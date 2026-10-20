@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Task1_ass_oop3.t3
 {
-    internal class Course : IHasId
+   public class Course : IHasId
     {
-        public int Id { get; }
-        public string Title { get; }
-        public int Price { get; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public decimal Price { get; set; }
 
     }
 }

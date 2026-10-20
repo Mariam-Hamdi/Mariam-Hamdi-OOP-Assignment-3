@@ -9,12 +9,12 @@ namespace Task1_ass_oop3.t3
 {
     public interface IHasId
     {
-        int Id { get; }
+        int Id { get; set; }
     }
     internal class Store<T> where T : class, IHasId
     {
         Dictionary<int, T> Dict = new Dictionary<int, T>();
-        public void  AddCourse(T item)
+        public void  Add(T item)
         {
             if(Dict.ContainsKey(item.Id))
             {

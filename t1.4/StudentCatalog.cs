@@ -17,7 +17,7 @@ namespace Task1_ass_oop3.t1._4
         public static IEnumerable<Student> GetAllStudents()
         {
             for (var i = 1; i <= 1_000_000; i++)
-                yield return new Student { Id = i, Name = $"Student {i}" };
+                yield return new Student { Id = i, Name = $"Studenttt {i}" };
         }
     }
 }

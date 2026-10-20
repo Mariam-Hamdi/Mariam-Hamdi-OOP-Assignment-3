@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task1_ass_oop3.t3
 {
-    public class Student
+    public class Student : IHasId
     {
         public int Id { get; }
         public string name { get;  }

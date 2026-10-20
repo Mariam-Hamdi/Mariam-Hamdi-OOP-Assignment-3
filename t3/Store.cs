@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Task1_ass_oop3.t3
 {
-    internal class Store<T>
+    public interface IHasId
+    {
+        int Id { get; }
+    }
+    internal class Store<T> where T : class, IHasId
     {
         List<T> courses = new List<T>();
 
@@ -15,6 +20,7 @@ namespace Task1_ass_oop3.t3
             courses.Add(course);
         }
         public T GetById(int id)
+            
         {
             foreach (var i in courses)
             {

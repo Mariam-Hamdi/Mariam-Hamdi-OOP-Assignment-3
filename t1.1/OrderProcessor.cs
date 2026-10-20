@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Task1_ass_oop3.t1._1
+{
+    public interface IOrderRepository {  void Save(int orderId, DateTime processedAt);   }
+    public interface IEmailSender     {  void Send(string to, string body); }
+    public class OrderProcessor
+    {
+        private readonly IOrderRepository _orderRepository;
+        private readonly IEmailSender _emailSender;
+
+        public OrderProcessor(IOrderRepository orderRepository, IEmailSender emailSender)
+        {
+            _orderRepository = orderRepository;
+            _emailSender = emailSender;
+        }
+
+        public void Process(int orderId, string customerEmail)
+        {
+            _orderRepository.Save(orderId, DateTime.Now);
+            _emailSender.Send(customerEmail, $"Order {orderId} confirmed at {DateTime.Now}");
+        }
+
+    }
+    public class SqlOrderRepository : IOrderRepository
+    {
+        public void Save(int orderId, DateTime processedAt) =>
+            Console.WriteLine($"[SQL] save order {orderId} @ {processedAt:O}");
+    }
+    public class SmtpEmailSender : IEmailSender
+    {
+        public void Send(string to, string body) =>
+            Console.WriteLine($"[SMTP] to={to} body={body}");
+    }
+
+}

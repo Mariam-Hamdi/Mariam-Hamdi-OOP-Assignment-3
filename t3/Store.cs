@@ -13,35 +13,30 @@ namespace Task1_ass_oop3.t3
     }
     internal class Store<T> where T : class, IHasId
     {
-        List<T> courses = new List<T>();
-
-        public void  AddCourse(T course)
+        Dictionary<int, T> Dict = new Dictionary<int, T>();
+        public void  AddCourse(T item)
         {
-            courses.Add(course);
-        }
-        public T GetById(int id)
-            
-        {
-            foreach (var i in courses)
+            if(Dict.ContainsKey(item.Id))
             {
-                if (i.Id == id)
-                {
-                    return i;
-                }
-}
+                throw new Exception("Course with this ID already exists.");
+            }
+            Dict.Add(item.Id, item);
+        }
+        public T GetById(int id)   
+        {
+            if(Dict.ContainsKey(id))
+            {
+                return Dict[id];
+            }
             return null;
         }
-        public List<T> GetAll()
+        public IReadOnlyCollection<T> GetAll()
         {
-            return courses;
+            return Dict.Values;
         }
         public void Remove(int id)
         {
-            var course = GetById(id);
-            if (course != null)
-            {
-                courses.Remove(course);
-            }
+            Dict.Remove(id);
         }
     }
 }
